@@ -26,3 +26,4 @@ Supplies Needed
 
 References
 ===============================
+Data Glove Overview: https://www.kobakant.at/DIY/?p=7114
