@@ -19,24 +19,29 @@ Detecting stitches through sensors.
  
 Responsibilities
 ==============================
-
-Fabrication
-Tuning Sensors
-Counting Logic
+- Physical Design/Fabrication of Glove (ML)
+- Design/Fabrication of sensors + microcontroller (ML)
+- Software for getting and synchronizing data (MM)
+- Wiring up displays (MM)
+- Software detection of stitches (MM+ML)
+- Software for display (ML)
  
-Plan
+Plan & Milestones
 ===============================
-
-Get it done!
-
-Milestones
-===============================
-
-By next week, have a plan.
+ - 5/14: Full part list
+ - 5/21: First prototype (single glove, no display, simple software)
+ - 5/25: Add simple display, better software detection of stitches
+ - 6/1: Second Glove, wireless transmission of state
+ - 6/10: Finish all hardware/software
 
 Supplies Needed
 ==============================
-Stuff
+- Fabric
+- Wires
+- Sensors
+- Displays
+- Microcontrollers
+- Wireless Communcation (btw. gloves)
 
 References
 ===============================
