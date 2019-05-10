@@ -1,4 +1,4 @@
-Project Name
+Knitting God's Hand
 ==============================
 Michael Mara and Mari Lliguicota
 
@@ -9,21 +9,30 @@ A glove that helps knitters keep track of where they are while knitting.
 
 Description
 ==============================
-*Description here*
+A glove that helps knitters keep track of where they are while knitting.
  - What is innovative about proposal?
  - What do you think will be the hardest part of the project?
  
 Responsibilities
 ==============================
+
+Fabrication
+Tuning Sensors
+Counting Logic
  
 Plan
 ===============================
 
+Get it done!
+
 Milestones
 ===============================
 
+By next week, have a plan.
+
 Supplies Needed
 ==============================
+Stuff
 
 References
 ===============================
