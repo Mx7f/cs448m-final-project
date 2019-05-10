@@ -1,4 +1,4 @@
-Knitting God's Hand
+The Hand of the Knitting God
 ==============================
 Michael Mara and Mari Lliguicota
 
