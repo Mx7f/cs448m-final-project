@@ -34,14 +34,21 @@ Plan & Milestones
  - 6/1: Second Glove, wireless transmission of state
  - 6/10: Finish all hardware/software
 
-Supplies Needed
+Tentative Supplies Needed
 ==============================
 - Fabric
 - Wires
-- Sensors
+- Flex Sensors or EeonTex Conductive Fabric 
 - Displays
-- Microcontrollers
 - Wireless Communcation (btw. gloves)
+- Conductive Thread Bobbin - 12m (Smooth, Stainless Steel) 
+- Snap Assortment - 30 pack (male and female) 
+- Solder Lead Free - 15-gram Tube 	
+- Break Away Headers - Straight 
+- Circuit Playground Express or other microcontroller
+- Needles
+- Batteries
+- Battery holder
 
 References
 ===============================
