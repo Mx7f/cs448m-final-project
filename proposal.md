@@ -41,3 +41,4 @@ References
 - [Glove Controller](https://www.instructables.com/id/DIY-Glove-Controller-With-E-Textile-Sensors/)
 - [Wireless Glove Controller](https://learn.sparkfun.com/tutorials/wireless-glove-controller)
 - [Sensitive fingertips](https://www.kobakant.at/DIY/?p=531)
+- [Current way to count stitches](https://www.marthastewart.com/1500191/how-use-markers-count-knitting-stitches)
