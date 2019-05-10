@@ -9,9 +9,13 @@ A glove that helps knitters keep track of where they are while knitting.
 
 Description
 ==============================
-A glove that helps knitters keep track of where they are while knitting.
- - What is innovative about proposal?
- - What do you think will be the hardest part of the project?
+Knitting patterns are described by stitches. For example, a design may call for a row with 86 stitches. As a person knits, it is easy to lose track of the amount of stitches created so far. Once you lose track, you have to manually count stitches. Current methods to help keep track of stitches include the use of physical markers such as bulb pins, or in my case, paper clips. The Hand of the Knitting God aims to ease keeping track of stitches by electronically storing the amount of stitches created. 
+- What is innovative about the proposal?
+We believe we are the first ones to try to tackle this problem electronically. 
+
+- What do you think will be the hardest part of the project?
+Detecting stitches through sensors.
+
  
 Responsibilities
 ==============================
