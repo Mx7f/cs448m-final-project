@@ -4,7 +4,8 @@ Michael Mara and Mari Lliguicota
 
 Goal
 ==============================
-What do you want to be able to make?
+A glove that helps knitters keep track of where they are while knitting.
+[A glove that assists knitters](https://cdn.instructables.com/F66/1H4R/J30SVBKT/F661H4RJ30SVBKT.LARGE.jpg)
 
 Description
 ==============================
