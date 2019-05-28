@@ -5,18 +5,18 @@ Michael Mara and Mari Lliguicota
 Goal
 ---------
 
-What do you want to be able to make?
+What do you want to be able to make?  
 We would like to make a braille generator machine that is lightweight, inexpensive, and easy to carry. With the machine, we would like to write haikus in braille. 
 
 Description
 ---------
 Inspired by the DrawBot Badge plotter and by OpenBraille, we aim to build a small braille generating machine. We intend to use the DrawBot Badge plotter's drawing mechanism and a custom built pad with grid indentations. 
 
-* What is innovative about proposal?
+* What is innovative about proposal?  
 
 Embossing machines used to create braille are expensive and wide. Our machine will be smaller than your average printer. The size of the machine and the ability to create braille is what is innovative about the proposal.
 
-* What do you think will be the hardest part of the project?
+* What do you think will be the hardest part of the project?  
 
 The hardest part of the project would be implementing the drawing mechanism used by DrawBot Badge and creating the right amount of pressure to create a dot. 
 
