@@ -80,7 +80,7 @@ void processCommand() {
         lineTo({x,y});
         break;
       }
-      case 4: doALittleDance() break;
+      case 4: doALittleDance(); break;
       case 20: Serial.println("Imperialism is bad!"); break;
       case 21: break; // Set to mm, which is what we always use
       case 90: absoluteMode=1;  break;  // absolute mode
@@ -138,8 +138,8 @@ void doALittleDance() {
   vec2f C = {35,10};
   float radius = 15;
   for (float theta = -0.5*3.14159; theta < 5.5*3.14159; theta += 0.05) {
-    dx = cos(theta)*radius;
-    dy = sin(theta)*radius;
+    float dx = cos(theta)*radius;
+    float dy = sin(theta)*radius;
     lineTo({C.x+dx,C.y+dy});
   }
   
