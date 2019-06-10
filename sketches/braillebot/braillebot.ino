@@ -2,7 +2,7 @@
 #include "vec2.h"
 #include "braille.h"
 
-#define X_BOUNDS 75
+#define X_BOUNDS 70
 
 vec2f ORIGIN = {0,60};
 
@@ -16,24 +16,22 @@ vec2f CORNER_SPACING = {DOT_SPACING.x+CHAR_SPACING.x, DOT_SPACING.y*2+CHAR_SPACI
 
 int complete = 0;
 
+int mirror = 0;
+
 void setup() {
   absoluteMode = 1;
   // For debugging and GCode communication
   Serial.begin(9600);
   // lower arm, upper arm, pen up
   attachServoPins(4,6,2);
-  goToOrigin();
+  setPenUp(1);
+  computeServoAngles(ORIGIN);
+  currentPos = ORIGIN;
   Serial.println("Setup Complete");
-
-  char message[] = "Hello World";
-  int charCount = strlen(message);
-  for (int i = 0; i < charCount; ++i) {
-    doBraille(message[i]);
-  }
 }
 
 // If embossing, use inverted
-void drawBrailleChar(char c, vec2f upperLeft, vec2f spacing, int inverted) {
+void drawBrailleChar(char c, vec2f upperLeft, vec2f spacing) {
   Serial.print("drawBrailleChar(");
   Serial.print((int)c);
   Serial.println(")");
@@ -41,9 +39,12 @@ void drawBrailleChar(char c, vec2f upperLeft, vec2f spacing, int inverted) {
   for (int x = 0; x < 2; ++x) {
     for (int y = 0; y < 3; ++y) {
       if (isBitSet(encoding, x*3+y)) {
-        int xOff = (inverted != 0) ? x : (1-x);
+        int xOff = 1-x;
         float xf = upperLeft.x + (xOff*spacing.x);
         float yf = upperLeft.y - (y*spacing.y);
+        if (mirror) {
+          xf = X_BOUNDS-xf;
+        }
         makeDot({xf,yf});
       }
     }
@@ -70,9 +71,6 @@ char LOWER_A = 'a';
 char UPPER_A = 'A';
 
 void doBraille(char c) {
-  Serial.print("doBraille(");
-  Serial.print((int)c);
-  Serial.println(")");
   if (!complete) {
     char brailleIdx;
     int doit = 0;
@@ -86,13 +84,25 @@ void doBraille(char c) {
       doit = 1;
     }
     if (doit) {
-      drawBrailleChar(brailleIdx, currentCharPos, DOT_SPACING, 0);
+      drawBrailleChar(brailleIdx, currentCharPos, DOT_SPACING);
       advanceSpacing();
     }
   }
 }
 
-
 void loop() {
-                         
+  if (Serial.available() > 0) {
+    char c = Serial.read(); //Reading a character at a time
+    if(c == ' ' || (c >= UPPER_A && c < UPPER_A+26) || (LOWER_A && c < LOWER_A+26)) {
+      doBraille(c);
+    }
+    if(c == '$') {
+      complete = 0;
+      currentCharPos = ORIGIN;
+    }
+    if(c == '*') { // Reverse mode
+      mirror = (mirror == 0);
+      Serial.println(mirror ? "EMBOSS" : "DRAW");
+    }
+  }            
 }

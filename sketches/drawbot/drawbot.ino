@@ -28,8 +28,7 @@ void setup() {
 }
 
 void setFeedrate(float rate) {
-  feedrate = rate;
-  //Serial.println("Note: Feedrate is ignored!");
+  feedrate = rate; // Not that we do anything with it.
 }
 
 
@@ -42,7 +41,7 @@ void reportState() {
 }
 
 void help() {
-  Serial.println("This isn't grbl! Read the code!\r\n");
+  Serial.println("Help? Nah, this isn't grbl. Read the code!\r\n");
 }
 
 void invalidCommand() {
@@ -81,7 +80,7 @@ void processCommand() {
         lineTo({x,y});
         break;
       }
-      case 4: break;// TODO parse and pause break;
+      case 4: doALittleDance() break;
       case 20: Serial.println("Imperialism is bad!"); break;
       case 21: break; // Set to mm, which is what we always use
       case 90: absoluteMode=1;  break;  // absolute mode
@@ -119,6 +118,40 @@ void prepareForCommand() {
   commandLen=0;
 }
 
+// Just for funsies
+void doALittleDance() {
+  int penUpPrev = penUp;
+  vec2f oldPos = currentPos;
+  setPenUp(0);
+  lineTo({35,-5});
+  for (int i = 0; i < 5; ++i) {
+    lineTo({45,-5});
+    lineTo({25,-5});
+  }
+
+  // Four corners
+  lineTo({0,0});
+  lineTo({0,75});
+  lineTo({75,0});
+  lineTo({75,75});
+  
+  vec2f C = {35,10};
+  float radius = 15;
+  for (float theta = -0.5*3.14159; theta < 5.5*3.14159; theta += 0.05) {
+    dx = cos(theta)*radius;
+    dy = sin(theta)*radius;
+    lineTo({C.x+dx,C.y+dy});
+  }
+  
+  for (int i = 0; i < 3; ++i) {
+    setPenUp(0);
+    setPenUp(1);
+  }
+  lineTo(oldPos);
+  setPenUp(penUpPrev);
+
+}
+
 void loop() {
   //Serial.println("loop");
   // send data only when you receive data:
@@ -130,13 +163,12 @@ void loop() {
     char c = Serial.read(); //Reading a character at a time
     //Serial.print(c);
     // If there's space, append the incoming character
-    if(commandLen < MAX_COMMAND_LEN && c != '?') {
+    if(commandLen < MAX_COMMAND_LEN && c != '?') { // Saw lots of '?' in the input for some reason.
       commandBuffer[commandLen] = c;
       commandLen++;
     }
     // if we got a return character (\n) the message is done.
     if(c=='\n') {
-      //Serial.print(F("\r\n")); // send back a return for debugging
       // Null terminate
       commandBuffer[commandLen]=0;
       processCommand();
