@@ -45,10 +45,19 @@ void setServoPos(vec2i pos) {
 void setPenUp(int up) {
   if (up != penUp) {
     penUp = up;
-    servoZ.write(up ? 90 : 0);
+    servoZ.write(up ? 26 : 0);
     delay(500);
   }
 }
+
+void fastPenUpFar(int up) {
+  if (up != penUp) {
+    penUp = up;
+    servoZ.write(up ? 45 : 0);
+    delay(100);
+  }
+}
+
 
 void setDefault() {
   vec2i pos = {120,120};

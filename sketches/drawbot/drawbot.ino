@@ -157,6 +157,7 @@ void loop() {
   // send data only when you receive data:
   if (Serial.available() > 0) {
     if (commsOpen == 0) {
+      Serial.println("Hi");
       reset();
       commsOpen = 1;
     }

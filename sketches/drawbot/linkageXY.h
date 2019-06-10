@@ -45,7 +45,7 @@ void setServoPos(vec2i pos) {
 void setPenUp(int up) {
   if (up != penUp) {
     penUp = up;
-    servoZ.write(up ? 90 : 0);
+    servoZ.write(up ? 25 : 0);
     delay(500);
   }
 }

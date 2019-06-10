@@ -1,7 +1,7 @@
 import getch
 import serial
-
-port = '/dev/tty.usbmodem1411'
+import time
+port = '/dev/tty.usbmodem14201'
 
 
 ard = serial.Serial(port,9600,timeout=5)
@@ -11,5 +11,5 @@ print("Type Away! Spaces become newlines; * mirrors the x direction, and $ reset
 
 while True:
     char = getch.getche()
-    ard.write(bytes(char))
+    ard.write(bytes(char,"ascii"))
     

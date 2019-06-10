@@ -90,6 +90,42 @@ void doBraille(char c) {
   }
 }
 
+// Just for funsies
+void doALittleDance() {
+  int penUpPrev = penUp;
+  vec2f oldPos = currentPos;
+  setPenUp(1);
+  lineTo({35,-5});
+  for (int i = 0; i < 5; ++i) {
+    lineTo({45,-5});
+    lineTo({25,-5});
+  }
+
+  // Four corners
+  lineTo({0,0});
+  lineTo({0,75});
+  lineTo({75,0});
+  lineTo({75,75});
+  
+  vec2f C = {35,10};
+  float radius = 15;
+  for (float theta = -0.5*3.14159; theta < 5.5*3.14159; theta += 0.05) {
+    float dx = cos(theta)*radius;
+    float dy = sin(theta)*radius;
+    lineTo({C.x+dx,C.y+dy});
+  }
+  
+  for (int i = 0; i < 3; ++i) {
+    fastPenUpFar(0);
+    fastPenUpFar(1);
+  }
+  fastPenUpFar(0);
+  setPenUp(1);
+  lineTo(oldPos);
+  setPenUp(penUpPrev);
+
+}
+
 void loop() {
   if (Serial.available() > 0) {
     char c = Serial.read(); //Reading a character at a time
@@ -103,6 +139,9 @@ void loop() {
     if(c == '*') { // Reverse mode
       mirror = (mirror == 0);
       Serial.println(mirror ? "EMBOSS" : "DRAW");
+    }
+    if (c == '!') {
+      doALittleDance();
     }
   }            
 }
