@@ -20,12 +20,6 @@ void setFeedrate(float rate) {
   //Serial.println("Note: Feedrate is ignored!");
 }
 
-// Prints a [s]tring and then a [f]loat
-void printsf(const char *code,float val) {
-  Serial.print(code);
-  Serial.println(val);
-}
-
 
 // Report the current position state to the hose
 void reportState() {
@@ -82,7 +76,16 @@ void processCommand() {
 }
 
 void loop() {
-
+  setPenUp(1);
+  lineTo({0,0});
+  for (float y = 0.0; y < 75.0; y += 5) {
+    for (float x = 0.0; x < 75.0; x += 4.5) {
+      lineTo({x,y});
+      setPenUp(0);
+      setPenUp(1);
+    }
+  }
+/*
   setCommand("G1  Z10");
   processCommand();
 

@@ -46,7 +46,7 @@ void setPenUp(int up) {
   if (up != penUp) {
     penUp = up;
     servoZ.write(up ? 90 : 0);
-    delay(300);
+    delay(100);
   }
 }
 
@@ -181,19 +181,13 @@ void computeServoAngles(vec2f pos) {
 
 #define LINE_STEP 1.0
 
-// Prints a [s]tring and then a [f]loat
-void printsf(const char *code,float val) {
-  Serial.print(code);
-  Serial.println(val);
-}
-
 // Adapted from https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 void line(vec2f p0, vec2f p1) {
   vec2f delta = subf(p1,p0);
   if (delta.x == 0.0f) {// Handle (vertical line)
     float x = p0.x;
     float yInc = (delta.y>0) ? LINE_STEP : -LINE_STEP;
-    for (float y = p0.y; abs(y-p0.y) <= abs(delta.y); y += yInc) {
+    for (float y = p0.y; y != (p1.y + yInc); y += yInc) {
       computeServoAngles({x,y});
     }
   } else {
@@ -202,9 +196,7 @@ void line(vec2f p0, vec2f p1) {
     float error = 0.0f; // No error at start
     float y = p0.y;
     float xInc = (delta.x>0) ? LINE_STEP : -LINE_STEP;
-    for (float x = p0.x; abs(x-p0.x) <= abs(delta.x); x += xInc) {
-      printsf("x ", x);
-      printsf("y ", y);
+    for (float x = p0.x; x != (p1.x + xInc); x += xInc) {
       computeServoAngles({x,y});
       error = error + deltaerr;
       if (error >= 0.5f) {

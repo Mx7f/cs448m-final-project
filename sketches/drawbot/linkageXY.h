@@ -46,7 +46,7 @@ void setPenUp(int up) {
   if (up != penUp) {
     penUp = up;
     servoZ.write(up ? 90 : 0);
-    delay(300);
+    delay(500);
   }
 }
 
@@ -187,6 +187,12 @@ void printsf(const char *code,float val) {
   Serial.println(val);
 }
 
+void goToOrigin() {
+  setPenUp(1);
+  computeServoAngles({0,0});
+  currentPos = {0,0};
+}
+
 // Adapted from https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 void line(vec2f p0, vec2f p1) {
   vec2f delta = subf(p1,p0);
@@ -203,8 +209,8 @@ void line(vec2f p0, vec2f p1) {
     float y = p0.y;
     float xInc = (delta.x>0) ? LINE_STEP : -LINE_STEP;
     for (float x = p0.x; abs(x-p0.x) <= abs(delta.x); x += xInc) {
-      printsf("x ", x);
-      printsf("y ", y);
+      //printsf("x ", x);
+      //printsf("y ", y);
       computeServoAngles({x,y});
       error = error + deltaerr;
       if (error >= 0.5f) {
@@ -214,7 +220,6 @@ void line(vec2f p0, vec2f p1) {
     }   
   }
 }
-
 // Adapted from https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 void dotLine(vec2i p0, vec2i p1) {
   vec2i delta = sub(p1,p0);
